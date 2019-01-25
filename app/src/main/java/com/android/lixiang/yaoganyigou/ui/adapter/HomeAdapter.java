@@ -36,9 +36,17 @@ public class HomeAdapter extends RecyclerView.Adapter {
     private List<String> mDailyPic = new ArrayList<>();
     private List<HomePageUnitsBean.DataBean.PiecesBean> mThreeData = new ArrayList<>();
     private List<HomePageUnitsBean.DataBean.PiecesBean> mHorizontalData = new ArrayList<>();
+    private List<HomePageUnitsBean.DataBean.PiecesBean> mListData = new ArrayList<>();
+
     private HomeFragment homeFragment;
 
-    public HomeAdapter(Context context, HomeFragment homeFragment, List<HomePageSlideBean.DataBean> mBanner, List<String> mDailyPic, HomePageUnitsBean.DataBean mThree, HomePageUnitsBean.DataBean mHorizontal) {
+    public HomeAdapter(Context context,
+                       HomeFragment homeFragment,
+                       List<HomePageSlideBean.DataBean> mBanner,
+                       List<String> mDailyPic,
+                       HomePageUnitsBean.DataBean mThree,
+                       HomePageUnitsBean.DataBean mHorizontal,
+                       HomePageUnitsBean.DataBean mList) {
         this.context = context;
         this.homeFragment = homeFragment;
         for (int i = 0; i < mBanner.size(); i++) {
@@ -46,6 +54,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
         }
         mThreeData.addAll(mThree.getPieces());
         mHorizontalData.addAll(mHorizontal.getPieces());
+        mListData.addAll(mList.getPieces());
         this.mDailyPic = mDailyPic;
         Logger.d(mImages);
     }
@@ -66,13 +75,12 @@ public class HomeAdapter extends RecyclerView.Adapter {
         } else if (i == TYPE_HORIZONTAL) {
             view = View.inflate(context, R.layout.item_home_horizontal, null);
             return new HorizontalHolder(view);
+        } else {
+            view = View.inflate(context, R.layout.item_home_list, null);
+            RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            view.setLayoutParams(lp);
+            return new NormalHolder(view);
         }
-// else {//正常
-//            view = getView(R.layout.item_normal);
-//            RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//            view.setLayoutParams(lp);
-//            return new NormalHolder(view);
-//        }
         return null;
     }
 
@@ -173,4 +181,6 @@ public class HomeAdapter extends RecyclerView.Adapter {
             mHorizontalRV = itemView.findViewById(R.id.mHorizontalRV);
         }
     }
+
+
 }

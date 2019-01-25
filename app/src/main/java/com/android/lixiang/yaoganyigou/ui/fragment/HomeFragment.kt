@@ -25,7 +25,8 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeView {
         if (homePageUnitsBean.status == 200) {
             mThree = homePageUnitsBean.data[1]
             mHorizontal = homePageUnitsBean.data[0]
-            homeAdapter = HomeAdapter(context, fragment, mBanner, mDailyPicTitle, mThree, mHorizontal)
+            mList = homePageUnitsBean.data[2]
+            homeAdapter = HomeAdapter(context, fragment, mBanner, mDailyPicTitle, mThree, mHorizontal, mList)
             mHomeRV.layoutManager = mLayoutManager
             mHomeRV.adapter = homeAdapter
         }
@@ -37,9 +38,7 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeView {
                 mDailyPicTitle?.add(getDailyPicBean.data.sjDailyPicDtoList[i].imageName)
             }
             mPresenter.homePageUnits()
-
         }
-
     }
 
     override fun returnGetDailyPicError() {
@@ -64,6 +63,8 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), HomeView {
     private var mLayoutManager: LinearLayoutManager? = null
     private var mThree: HomePageUnitsBean.DataBean? = null
     private var mHorizontal: HomePageUnitsBean.DataBean? = null
+    private var mList: HomePageUnitsBean.DataBean? = null
+
     private var fragment: HomeFragment? = null
 
     override fun injectComponent() {
