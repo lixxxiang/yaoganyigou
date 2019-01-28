@@ -1,49 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="278dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF">
-    <android.support.v7.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:textColor="#5C5C5C"
-            android:id="@+id/mTitleTV" />
 
-    <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/mDetailTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12dp"
-            android:textColor="#9B9B9B"
-            android:layout_marginLeft="15dp"
-            android:layout_below="@+id/mTitleTV"
-
-            android:layout_marginTop="8dp" />
-
-    <android.support.v7.widget.AppCompatImageView
-            android:layout_width="262dp"
-            android:layout_height="185dp"
-            android:layout_below="@+id/mDetailTV"
-            android:id="@+id/mImageIV"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:scaleType="centerCrop" />
-
-    <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/mTagTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:gravity="center"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="12dp"
-            android:layout_alignTop="@+id/mImageIV"
-            android:layout_marginTop="11dp"
-            android:background="@drawable/home_horizontal_text_border"
-            android:textSize="12dp" />
-
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/mListRV"
+            android:background="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"/>
 </RelativeLayout>

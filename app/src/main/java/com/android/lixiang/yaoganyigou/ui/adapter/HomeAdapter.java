@@ -2,14 +2,12 @@ package com.android.lixiang.yaoganyigou.ui.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
+import android.support.v7.widget.*;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import com.android.lixiang.base.utils.view.GridSpacingItemDecoration;
 import com.android.lixiang.base.utils.view.TextSwitcherView2;
 import com.android.lixiang.yaoganyigou.R;
 import com.android.lixiang.yaoganyigou.presenter.data.bean.HomePageSlideBean;
@@ -77,11 +75,8 @@ public class HomeAdapter extends RecyclerView.Adapter {
             return new HorizontalHolder(view);
         } else {
             view = View.inflate(context, R.layout.item_home_list, null);
-            RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            view.setLayoutParams(lp);
-            return new NormalHolder(view);
+            return new ListHolder(view);
         }
-        return null;
     }
 
     @Override
@@ -118,12 +113,19 @@ public class HomeAdapter extends RecyclerView.Adapter {
             SnapHelper snapHelperStart = new GravitySnapHelper(Gravity.START);
             snapHelperStart.attachToRecyclerView(horizontalHolder.mHorizontalRV);
             horizontalHolder.mHorizontalRV.setAdapter(new HomeHorizontalAdapter(mHorizontalData, context, homeFragment));
+        } else if (viewHolder instanceof ListHolder) {//轮播图
+            ListHolder listHolder = (ListHolder) viewHolder;
+            RecyclerView.LayoutManager manager = new GridLayoutManager(context, 2);
+            listHolder.mListRV.addItemDecoration(new GridSpacingItemDecoration(2, 20, true));
+            listHolder.mListRV.setLayoutManager(manager);
+            listHolder.mListRV.setAdapter(new HomeListAdapter(mListData, context, homeFragment));
+
         }
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 5;
     }
 
     @Override
@@ -182,5 +184,12 @@ public class HomeAdapter extends RecyclerView.Adapter {
         }
     }
 
+    public static class ListHolder extends RecyclerView.ViewHolder {
+        RecyclerView mListRV;
 
+        ListHolder(View itemView) {
+            super(itemView);
+            mListRV = itemView.findViewById(R.id.mListRV);
+        }
+    }
 }
