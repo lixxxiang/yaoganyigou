@@ -27,7 +27,7 @@ public class SpecialHorizontalAdapter extends RecyclerView.Adapter<SpecialHorizo
     @Override
     public SpecialHorizontalAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         return new ViewHolder(LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_home_horizontal_item, viewGroup, false));
+                .inflate(R.layout.item_special_horizontal_item, viewGroup, false));
     }
 
     @Override

@@ -69,9 +69,9 @@ public class SpecialAdapter extends RecyclerView.Adapter {
         } else if (viewHolder instanceof VerticalHolder) {//轮播图
             VerticalHolder verticalHolder = (VerticalHolder) viewHolder;
             RecyclerView.LayoutManager manager = new GridLayoutManager(context, 2);
-            verticalHolder.mListRV.addItemDecoration(new GridSpacingItemDecoration(2, 20, true));
-            verticalHolder.mListRV.setLayoutManager(manager);
-            verticalHolder.mListRV.setAdapter(new SpecialVerticalAdapter(mVerticalData, context, specialFragment));
+            verticalHolder.mVerticalRV.addItemDecoration(new GridSpacingItemDecoration(2, 20, true));
+            verticalHolder.mVerticalRV.setLayoutManager(manager);
+            verticalHolder.mVerticalRV.setAdapter(new SpecialVerticalAdapter(mVerticalData, context, specialFragment));
         }
     }
 
@@ -103,7 +103,7 @@ public class SpecialAdapter extends RecyclerView.Adapter {
 
         VerticalHolder(View itemView) {
             super(itemView);
-            mListRV = itemView.findViewById(R.id.mListRV);
+            mListRV = itemView.findViewById(R.id.mVerticalRV);
         }
     }
 }
